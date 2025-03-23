@@ -25,11 +25,11 @@ export interface UsersTableProps {
   users: User[];
 }
 
-export default function UsersTable({ users: data }: UsersTableProps) {
+export default function UsersTable({ users }: UsersTableProps) {
   const { t } = useTranslation();
   const { selectUser } = useAppContext();
 
-  return data ? (
+  return users?.length ? (
     <Container>
       <Box
         sx={{
@@ -78,7 +78,7 @@ export default function UsersTable({ users: data }: UsersTableProps) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {(data as User[]).map((user) => (
+            {(users as User[]).map((user) => (
               <TableRow
                 key={user.employeeId}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

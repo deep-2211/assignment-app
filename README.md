@@ -26,6 +26,11 @@ Password: admin
 - On successful login, below screen will be displayed !!! :rocket:
 <img width="1429" alt="image" src="https://github.com/user-attachments/assets/6315c409-77d5-40b7-99a6-a31f4ce0f417" />
 
+# App Tour (Screen Recording) 
+
+[assignment_app.webm](https://github.com/user-attachments/assets/614427bc-aea2-4bad-a559-61bd7b32e395)
+
+
 
 # To Run Test Cases
 - To run test cases in terminal do -

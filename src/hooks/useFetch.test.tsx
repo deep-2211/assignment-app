@@ -9,10 +9,6 @@ describe('useFetch hook', () => {
     localStorage.clear();
   });
 
-  it('dummy test', () => {
-    expect(true).toBeTruthy();
-  });
-
   it('should return loading initially', async () => {
     fetchMock.mockResponseOnce(JSON.stringify({}));
     const { result } = renderHook(() => useFetch('test-endpoint'));
@@ -27,7 +23,6 @@ describe('useFetch hook', () => {
 
     const { result } = renderHook(() => useFetch('test-endpoint'));
 
-    // Wait until data is fetched and state updates
     await waitFor(() => expect(result.current.data).toEqual(mockData));
 
     expect(fetchMock).toHaveBeenCalledWith(`${BASE_URL}/test-endpoint`, {

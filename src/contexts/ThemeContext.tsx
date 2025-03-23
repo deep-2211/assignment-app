@@ -10,7 +10,6 @@ interface ThemeContextType {
 
 declare module '@mui/material/styles' {
   interface Theme {
-    //appColors: any;
     appColors: {
       blue: {
         light: string;
@@ -22,7 +21,6 @@ declare module '@mui/material/styles' {
     };
   }
   interface ThemeOptions {
-    //appColors?: any;
     appColors?: {
       blue?: {
         light?: string;
@@ -48,6 +46,7 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)',
   ).matches;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const appliedTheme: any =
     themeMode === 'system' ? (prefersDarkMode ? 'dark' : 'light') : themeMode;
 

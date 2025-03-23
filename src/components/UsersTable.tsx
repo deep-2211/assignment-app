@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  CircularProgress,
   Container,
   IconButton,
 } from '@mui/material';
@@ -15,7 +14,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import useFetch from '../hooks/useFetch';
 import useAppContext from '../hooks/useAppContext';
 import { User } from '../types/User';
 import { useTranslation } from 'react-i18next';
@@ -23,29 +21,13 @@ import SearchField from './Search';
 import { IconPosition } from '../types/Common';
 import '../i18n';
 
-export default function UsersTable() {
+export interface UsersTableProps {
+  users: User[];
+}
+
+export default function UsersTable({ users: data }: UsersTableProps) {
   const { t } = useTranslation();
   const { selectUser } = useAppContext();
-  const { data, loading, error } = useFetch('users');
-
-  if (loading) {
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          height: '90dvh',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   return data ? (
     <Container>

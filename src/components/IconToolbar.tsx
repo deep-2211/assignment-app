@@ -40,79 +40,80 @@ type Props = {
   onDrawerToggle: (menuIdx: number) => void;
 };
 
+const NavMenus = [
+  {
+    icon: <MapsHomeWorkOutlinedIcon />,
+    label: 'My Organization',
+    tooltip: '',
+    link: '#',
+  },
+  {
+    icon: <HomeOutlinedIcon />,
+    label: 'Home',
+    tooltip: '',
+    link: '#',
+  },
+  {
+    icon: <DescriptionOutlinedIcon />,
+    label: 'Documents',
+    tooltip: '',
+    link: '#',
+  },
+  {
+    icon: <AppSettingsAltOutlinedIcon />,
+    label: 'App Settings',
+    tooltip: '',
+    link: '#',
+  },
+  {
+    icon: <RequestPageOutlinedIcon />,
+    label: 'Expenses',
+    tooltip: '',
+    link: '#',
+  },
+  {
+    icon: <AssessmentOutlinedIcon />,
+    label: 'Assessments',
+    tooltip: '',
+    link: '#',
+  },
+  {
+    icon: <FileCopyOutlinedIcon />,
+    label: 'Reports',
+    tooltip: '',
+    link: '#',
+  },
+  {
+    icon: <LibraryAddCheckOutlinedIcon />,
+    label: 'Approvals',
+    tooltip: '',
+    link: '#',
+  },
+  {
+    icon: <WarningAmberOutlinedIcon />,
+    label: 'Errors',
+    tooltip: '',
+    link: '#',
+  },
+  {
+    icon: <TimelineOutlinedIcon />,
+    label: 'Analysis',
+    tooltip: '',
+    link: '#',
+  },
+];
+
+const UserMenus = [
+  {
+    icon: <PhoneIphoneOutlinedIcon />,
+    label: 'My App',
+    tooltip: '',
+    link: '#',
+  },
+];
+
 export default function IconToolbar({ drawer, onDrawerToggle }: Props) {
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
-  const NavMenus = [
-    {
-      icon: <MapsHomeWorkOutlinedIcon />,
-      label: 'My Organization',
-      tooltip: '',
-      link: '#',
-    },
-    {
-      icon: <HomeOutlinedIcon />,
-      label: 'Home',
-      tooltip: '',
-      link: '#',
-    },
-    {
-      icon: <DescriptionOutlinedIcon />,
-      label: 'Documents',
-      tooltip: '',
-      link: '#',
-    },
-    {
-      icon: <AppSettingsAltOutlinedIcon />,
-      label: 'App Settings',
-      tooltip: '',
-      link: '#',
-    },
-    {
-      icon: <RequestPageOutlinedIcon />,
-      label: 'Expenses',
-      tooltip: '',
-      link: '#',
-    },
-    {
-      icon: <AssessmentOutlinedIcon />,
-      label: 'Assessments',
-      tooltip: '',
-      link: '#',
-    },
-    {
-      icon: <FileCopyOutlinedIcon />,
-      label: 'Reports',
-      tooltip: '',
-      link: '#',
-    },
-    {
-      icon: <LibraryAddCheckOutlinedIcon />,
-      label: 'Approvals',
-      tooltip: '',
-      link: '#',
-    },
-    {
-      icon: <WarningAmberOutlinedIcon />,
-      label: 'Errors',
-      tooltip: '',
-      link: '#',
-    },
-    {
-      icon: <TimelineOutlinedIcon />,
-      label: 'Analysis',
-      tooltip: '',
-      link: '#',
-    },
-  ];
-
-  const UserMenus = [
-    {
-      icon: <PhoneIphoneOutlinedIcon />,
-      label: 'My App',
-      tooltip: '',
-      link: '#',
-    },
-  ];
 
   function handleMenuClick(index: number) {
     setActiveMenuIndex(index);

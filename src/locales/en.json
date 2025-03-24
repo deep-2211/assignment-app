@@ -26,7 +26,7 @@
   "table_col__note": "Note",
   "table_col__address": "Address",
   "table_col__lang": "Address",
-  "table_col__uname_pass": "Address",
+  "table_col__uname_pass": "Username & Password",
   "lbl_infopanel__user_info": "User Information",
   "lbl_infopanel__login_info": "Login Information",
   "lbl_page__not_found": "Page Not Found",

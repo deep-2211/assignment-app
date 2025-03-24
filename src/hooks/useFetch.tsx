@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { BASE_URL } from '../config/ApiConfig';
 
 const useFetch = (url: string) => {
@@ -15,30 +15,30 @@ const useFetch = (url: string) => {
     return localStorage.getItem('token');
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(getURLEndpoint(url), {
-          headers: {
-            Authorization: `Bearer ${getAuthToken()}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status} ${response.statusText}`);
-        }
-        const result = await response.json();
-        setData(result);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(getURLEndpoint(url), {
+        headers: {
+          Authorization: `Bearer ${getAuthToken()}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
-    };
-
-    fetchData();
+      const result = await response.json();
+      setData(result);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }, [url]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const postData = async (payload: any) => {
     setLoading(true);
@@ -65,7 +65,7 @@ const useFetch = (url: string) => {
     }
   };
 
-  return { data, loading, error, postData };
+  return { data, loading, error, refetch: fetchData, postData };
 };
 
 export default useFetch;

@@ -5,7 +5,6 @@ import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import AppNavBar from './AppNavbar';
 import IconToolbar from './IconToolbar';
-import InfoPanel from './InfoPanel';
 import { AppConfig } from '../config/AppConfig';
 
 export default function AppLayout() {
@@ -18,8 +17,8 @@ export default function AppLayout() {
     setDrawerOpened(false);
   }, [location]);
 
-  function handleDrawerToggle(idx: number) {
-    setDrawerOpened(() => idx === 0);
+  function handleDrawerToggle() {
+    setDrawerOpened((d) => !d);
   }
 
   return (
@@ -42,7 +41,7 @@ export default function AppLayout() {
         >
           <IconToolbar
             drawer={drawerOpened}
-            onDrawerToggle={(arg) => handleDrawerToggle(arg)}
+            onDrawerToggle={() => handleDrawerToggle()}
           />
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1 }}>
@@ -58,7 +57,6 @@ export default function AppLayout() {
           </Box>
         </Box>
       </Box>
-      <InfoPanel />
     </>
   );
 }

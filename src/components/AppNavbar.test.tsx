@@ -10,6 +10,9 @@ jest.mock('@mui/icons-material/Notifications', () => () => (
 ));
 jest.mock('@mui/icons-material/Settings', () => () => <div>SettingsIcon</div>);
 jest.mock('@mui/icons-material/Search', () => () => <div>SearchIcon</div>);
+jest.mock('react-router', () => ({
+  useNavigate: jest.fn(),
+}));
 
 describe('AppNavBar', () => {
   beforeAll(() => {

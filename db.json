@@ -3,7 +3,7 @@
     {
       "id": "EMP003",
       "fullName": "Michael Johnson",
-      "department": "Finance",
+      "department": "Finance department",
       "phoneNumber": "345-678-9012",
       "mobileNo": "765-432-1098",
       "address": "789 Pine St, Gotham, NJ",
@@ -16,7 +16,7 @@
     {
       "id": "EMP006",
       "fullName": "Alice Green",
-      "department": "IT",
+      "department": "Finance",
       "phoneNumber": "678-901-2345",
       "mobileNo": "432-109-8765",
       "address": "654 Birch St, Rivertown, WA",
@@ -81,7 +81,7 @@
     {
       "id": "EMP013",
       "fullName": "Sneha Reddy",
-      "department": "Marketing",
+      "department": "IT",
       "phoneNumber": "979-234-5678",
       "mobileNo": "543-210-9877",
       "address": "78 Indiranagar, Hyderabad, India",

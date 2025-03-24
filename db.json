@@ -1,33 +1,7 @@
 {
   "users": [
     {
-      "employeeId": "EMP001",
-      "fullName": "John Doe",
-      "department": "HR",
-      "phoneNumber": "123-456-7890",
-      "mobileNo": "987-654-3210",
-      "address": "123 Main St, Cityville, NY",
-      "email": "john.doe@example.com",
-      "designation": "HR Manager",
-      "notes": "Experienced in employee relations",
-      "language": "English",
-      "username": "johndoe"
-    },
-    {
-      "employeeId": "EMP002",
-      "fullName": "Jane Smith",
-      "department": "IT",
-      "phoneNumber": "234-567-8901",
-      "mobileNo": "876-543-2109",
-      "address": "456 Oak St, Metropolis, CA",
-      "email": "jane.smith@example.com",
-      "designation": "Software Engineer",
-      "notes": "Specializes in backend development",
-      "language": "English",
-      "username": "janesmith"
-    },
-    {
-      "employeeId": "EMP003",
+      "id": "EMP003",
       "fullName": "Michael Johnson",
       "department": "Finance",
       "phoneNumber": "345-678-9012",
@@ -40,33 +14,7 @@
       "username": "michaelj"
     },
     {
-      "employeeId": "EMP004",
-      "fullName": "Emily Davis",
-      "department": "Marketing",
-      "phoneNumber": "456-789-0123",
-      "mobileNo": "654-321-0987",
-      "address": "987 Elm St, Star City, TX",
-      "email": "emily.davis@example.com",
-      "designation": "Marketing Manager",
-      "notes": "Leads branding initiatives",
-      "language": "English",
-      "username": "emilyd"
-    },
-    {
-      "employeeId": "EMP005",
-      "fullName": "Robert Brown",
-      "department": "Sales",
-      "phoneNumber": "567-890-1234",
-      "mobileNo": "543-210-9876",
-      "address": "321 Maple St, Central City, FL",
-      "email": "robert.brown@example.com",
-      "designation": "Sales Director",
-      "notes": "Oversees regional sales",
-      "language": "English",
-      "username": "robertb"
-    },
-    {
-      "employeeId": "EMP006",
+      "id": "EMP006",
       "fullName": "Alice Green",
       "department": "IT",
       "phoneNumber": "678-901-2345",
@@ -79,7 +27,7 @@
       "username": "aliceg"
     },
     {
-      "employeeId": "EMP007",
+      "id": "EMP007",
       "fullName": "David Wilson",
       "department": "Operations",
       "phoneNumber": "789-012-3456",
@@ -92,20 +40,7 @@
       "username": "davidw"
     },
     {
-      "employeeId": "EMP008",
-      "fullName": "Sophia Miller",
-      "department": "Customer Support",
-      "phoneNumber": "890-123-4567",
-      "mobileNo": "210-987-6543",
-      "address": "741 Redwood St, Valley City, AZ",
-      "email": "sophia.miller@example.com",
-      "designation": "Customer Service Lead",
-      "notes": "Passionate about customer satisfaction",
-      "language": "English",
-      "username": "sophiam"
-    },
-    {
-      "employeeId": "EMP009",
+      "id": "EMP009",
       "fullName": "Daniel Clark",
       "department": "Finance",
       "phoneNumber": "901-234-5678",
@@ -118,7 +53,7 @@
       "username": "danielc"
     },
     {
-      "employeeId": "EMP010",
+      "id": "EMP010",
       "fullName": "Amit Sharma",
       "department": "IT",
       "phoneNumber": "982-345-6789",
@@ -131,20 +66,7 @@
       "username": "amitsharma"
     },
     {
-      "employeeId": "EMP011",
-      "fullName": "Priya Verma",
-      "department": "HR",
-      "phoneNumber": "981-234-5678",
-      "mobileNo": "765-432-1099",
-      "address": "34 Green Park, Mumbai, India",
-      "email": "priya.verma@example.com",
-      "designation": "HR Specialist",
-      "notes": "Focus on talent acquisition",
-      "language": "Hindi",
-      "username": "priyaverma"
-    },
-    {
-      "employeeId": "EMP012",
+      "id": "EMP012",
       "fullName": "Rahul Gupta",
       "department": "Finance",
       "phoneNumber": "980-123-4567",
@@ -157,7 +79,7 @@
       "username": "rahulgupta"
     },
     {
-      "employeeId": "EMP013",
+      "id": "EMP013",
       "fullName": "Sneha Reddy",
       "department": "Marketing",
       "phoneNumber": "979-234-5678",
@@ -170,7 +92,7 @@
       "username": "snehareddy"
     },
     {
-      "employeeId": "EMP014",
+      "id": "EMP014",
       "fullName": "Arjun Iyer",
       "department": "Operations",
       "phoneNumber": "978-345-6789",
@@ -183,7 +105,7 @@
       "username": "arjuniyer"
     },
     {
-      "employeeId": "EMP015",
+      "id": "EMP015",
       "fullName": "Neha Patil",
       "department": "Customer Support",
       "phoneNumber": "977-456-7890",

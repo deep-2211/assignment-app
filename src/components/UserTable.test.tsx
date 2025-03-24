@@ -14,7 +14,7 @@ jest.mock('../hooks/useAppContext', () => ({
 
 const mockData = [
   {
-    employeeId: '1',
+    id: '1',
     fullName: 'John Doe',
     department: 'HR',
     phoneNumber: '4676846',
@@ -74,7 +74,7 @@ describe('UsersTable', () => {
     );
 
     const deleteButton = screen.getByLabelText('delete');
-    expect(deleteButton).toBeDisabled();
+    expect(deleteButton).toBeEnabled();
   });
 
   it('should trigger the "Create User" button click', () => {

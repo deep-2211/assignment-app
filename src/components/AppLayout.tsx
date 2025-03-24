@@ -5,7 +5,6 @@ import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import AppNavBar from './AppNavbar';
 import IconToolbar from './IconToolbar';
-import InfoPanel from './InfoPanel';
 import { AppConfig } from '../config/AppConfig';
 
 export default function AppLayout() {
@@ -58,7 +57,6 @@ export default function AppLayout() {
           </Box>
         </Box>
       </Box>
-      <InfoPanel />
     </>
   );
 }

@@ -1,10 +1,24 @@
 import { Box, CircularProgress } from '@mui/material';
 import UsersTable from '../components/UsersTable';
 import useFetch from '../hooks/useFetch';
+import { deleteUser } from '../services/api.service';
+import { useState } from 'react';
+import InfoPanel from '../components/InfoPanel';
 
 export default function UsersOverview() {
-  const { data, loading, error } = useFetch('users');
-  if (loading) {
+  const [pageLoading, setPageLoading] = useState(false);
+  
+  const { data, loading, error, refetch } = useFetch('users');
+
+  const handleDeleteUser = (userId: string) => {
+    setPageLoading(true);
+    deleteUser(userId).then(() => {
+      refetch();
+      setPageLoading(false);
+    });
+  };
+
+  if (pageLoading || loading) {
     return (
       <Box
         sx={{
@@ -25,7 +39,8 @@ export default function UsersOverview() {
 
   return (
     <div>
-      <UsersTable users={data ?? []} />
+      <UsersTable users={data ?? []} onDeleteRow={handleDeleteUser}/>
+      <InfoPanel />
     </div>
   );
 }

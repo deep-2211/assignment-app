@@ -19,9 +19,10 @@ import '../i18n';
 
 export interface UsersTableProps {
   users: User[];
+  onDeleteRow?: (id: string) => void;
 }
 
-export default function UsersTable({ users }: UsersTableProps) {
+export default function UsersTable({ users, onDeleteRow }: UsersTableProps) {
   const { t } = useTranslation();
   const { selectUser } = useAppContext();
   const [searchText, setSearchText] = useState('');
@@ -37,6 +38,12 @@ export default function UsersTable({ users }: UsersTableProps) {
       setFilteredUsers(users);
     }
   }, [searchText, users]);
+
+  const handleDelete = (user: User) => {
+    if(onDeleteRow) {
+      onDeleteRow(user.id);
+    } 
+  };
 
   return (
     <Container>
@@ -91,14 +98,14 @@ export default function UsersTable({ users }: UsersTableProps) {
             {filteredUsers?.length ? (
               filteredUsers.map((user) => (
                 <TableRow
-                  key={user.employeeId}
+                  key={user.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
                     {user.fullName}
                   </TableCell>
                   <TableCell>{user.department}</TableCell>
-                  <TableCell>{user.employeeId}</TableCell>
+                  <TableCell>{user.id}</TableCell>
                   <TableCell>{user.mobileNo}</TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell align="right">
@@ -109,7 +116,7 @@ export default function UsersTable({ users }: UsersTableProps) {
                     >
                       <ModeEditOutlinedIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" disabled color="inherit">
+                    <IconButton aria-label="delete" color="inherit" onClick={() => handleDelete(user)}>
                       <DeleteOutlinedIcon />
                     </IconButton>
                   </TableCell>

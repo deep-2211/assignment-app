@@ -10,7 +10,7 @@ import useAppContext from '../hooks/useAppContext';
 export default function UsersOverview() {
   const { selectUser } = useAppContext();
   const [pageLoading, setPageLoading] = useState(false);
-  
+
   const { data, loading, error, refetch } = useFetch('users');
 
   const handleDeleteUser = (userId: string) => {
@@ -25,7 +25,7 @@ export default function UsersOverview() {
     setPageLoading(true);
     updateUser(user.id, user).then((res) => {
       setPageLoading(false);
-      if(res) {
+      if (res) {
         selectUser(res);
       }
       refetch();
@@ -53,8 +53,8 @@ export default function UsersOverview() {
 
   return (
     <div>
-      <UsersTable users={data ?? []} onDeleteRow={handleDeleteUser}/>
-      <InfoPanel onSave={handleOnSave}/>
+      <UsersTable users={data ?? []} onDeleteRow={handleDeleteUser} />
+      <InfoPanel onSave={handleOnSave} />
     </div>
   );
 }

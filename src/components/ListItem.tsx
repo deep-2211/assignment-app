@@ -1,17 +1,13 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 interface ListItemProps {
   label: string;
   value: string;
   icon: React.ReactNode;
-};
+}
 
-export const ListItem = ({
-  label,
-  value,
-  icon,
-}: ListItemProps) => {
+export const ListItem = ({ label, value, icon }: ListItemProps) => {
   return (
     <Box
       sx={{

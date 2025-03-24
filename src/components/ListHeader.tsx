@@ -1,7 +1,7 @@
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
-import Typography from "@mui/material/Typography";
+import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 
 interface ListHeaderProps {
@@ -13,7 +13,7 @@ interface ListHeaderProps {
 export const ListHeader = ({
   text,
   isEditMode = false,
-  onEdit
+  onEdit,
 }: ListHeaderProps) => {
   return (
     <Box

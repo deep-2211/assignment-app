@@ -1,5 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import { alpha, Box, Drawer, IconButton, InputBase, List, styled, Typography } from '@mui/material';
+import {
+  alpha,
+  Box,
+  Drawer,
+  IconButton,
+  InputBase,
+  List,
+  styled,
+  Typography,
+} from '@mui/material';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
@@ -43,17 +52,17 @@ const defaultUser: User = {
 
 interface InfoPanelProps {
   onSave: (user: User) => void;
-};
+}
 
 export default function InfoPanel({ onSave }: InfoPanelProps) {
   const { t } = useTranslation();
   const { selectedUser, selectUser } = useAppContext();
-  const [ isEditInfo, setIsEditInfo ] = useState(false);
-  const [ isLoginInfoEdit, setLoginInfoEdit ] = useState(false);
-  const [ user, setUser ] = useState<User>(defaultUser);
+  const [isEditInfo, setIsEditInfo] = useState(false);
+  const [isLoginInfoEdit, setLoginInfoEdit] = useState(false);
+  const [user, setUser] = useState<User>(defaultUser);
 
   useEffect(() => {
-    if(selectedUser) {
+    if (selectedUser) {
       setUser(selectedUser);
     }
   }, [selectedUser]);
@@ -105,9 +114,9 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
         <StyledInputBase
           placeholder={''}
           value={user.fullName}
-          onChange={(e) => setUser(
-            (user) => ({ ...user, fullName: e.target.value })
-          )}
+          onChange={(e) =>
+            setUser((user) => ({ ...user, fullName: e.target.value }))
+          }
         />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 1.5 }}>
@@ -115,9 +124,9 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
         <StyledInputBase
           placeholder={''}
           value={user.email}
-          onChange={(e) => setUser(
-            (user) => ({ ...user, email: e.target.value })
-          )}
+          onChange={(e) =>
+            setUser((user) => ({ ...user, email: e.target.value }))
+          }
         />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 1.5 }}>
@@ -125,9 +134,9 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
         <StyledInputBase
           placeholder={''}
           value={user.department}
-          onChange={(e) => setUser(
-            (user) => ({ ...user, department: e.target.value })
-          )}
+          onChange={(e) =>
+            setUser((user) => ({ ...user, department: e.target.value }))
+          }
         />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 1.5 }}>
@@ -135,9 +144,9 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
         <StyledInputBase
           placeholder={''}
           value={user.designation}
-          onChange={(e) => setUser(
-            (user) => ({ ...user, designation: e.target.value })
-          )}
+          onChange={(e) =>
+            setUser((user) => ({ ...user, designation: e.target.value }))
+          }
         />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 1.5 }}>
@@ -145,9 +154,9 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
         <StyledInputBase
           placeholder={''}
           value={user.notes}
-          onChange={(e) => setUser(
-            (user) => ({ ...user, notes: e.target.value })
-          )}
+          onChange={(e) =>
+            setUser((user) => ({ ...user, notes: e.target.value }))
+          }
         />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 1.5 }}>
@@ -155,9 +164,9 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
         <StyledInputBase
           placeholder={''}
           value={user.address}
-          onChange={(e) => setUser(
-            (user) => ({ ...user, address: e.target.value })
-          )}
+          onChange={(e) =>
+            setUser((user) => ({ ...user, address: e.target.value }))
+          }
         />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 1.5 }}>
@@ -165,9 +174,9 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
         <StyledInputBase
           placeholder={''}
           value={user.language}
-          onChange={(e) => setUser(
-            (user) => ({ ...user, language: e.target.value })
-          )}
+          onChange={(e) =>
+            setUser((user) => ({ ...user, language: e.target.value }))
+          }
         />
       </Box>
     </Box>
@@ -214,7 +223,7 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
               <ListHeader
                 text={t('lbl_infopanel__user_info')}
                 isEditMode={isEditInfo}
-                onEdit={() => setIsEditInfo(fl => !fl)}
+                onEdit={() => setIsEditInfo((fl) => !fl)}
               />
               {!isEditInfo ? ViewModePanel : EditPanel}
               {isEditInfo && (
@@ -222,7 +231,11 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
                   <IconButton
                     sx={{
                       color: (theme) => theme.palette.common.white,
-                      backgroundColor: (theme) => theme.appColors.blue.main
+                      backgroundColor: (theme) => theme.appColors.blue.main,
+                      '&:hover': {
+                        backgroundColor: (theme) =>
+                          theme.appColors.teal,
+                      },
                     }}
                     onClick={() => onSave(user)}
                   >
@@ -233,7 +246,7 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
               <ListHeader
                 text={t('lbl_infopanel__login_info')}
                 isEditMode={isLoginInfoEdit}
-                onEdit={() => setLoginInfoEdit(e => !e)}
+                onEdit={() => setLoginInfoEdit((e) => !e)}
               />
               {!isLoginInfoEdit ? (
                 <ListItem
@@ -241,8 +254,10 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
                   value={selectedUser.username}
                   icon={<PasswordOutlinedIcon />}
                 />
-              ) : ( 
-                <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 1.5 }}>
+              ) : (
+                <Box
+                  sx={{ display: 'flex', alignItems: 'center', columnGap: 1.5 }}
+                >
                   <PasswordOutlinedIcon />
                   <StyledInputBase
                     placeholder={''}

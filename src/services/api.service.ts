@@ -1,5 +1,5 @@
-import { BASE_URL } from "../config/ApiConfig";
-import { User } from "../types/User";
+import { BASE_URL } from '../config/ApiConfig';
+import { User } from '../types/User';
 
 const getAuthToken = () => {
   return localStorage.getItem('token');
@@ -18,16 +18,13 @@ export const deleteUser = async (id: string) => {
     }
     const result = await response.json();
     return result;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     throw new Error(err);
   }
 };
 
-export const updateUser = async (
-  id: string,
-  payload: Omit<User, 'id'>
-) => {
+export const updateUser = async (id: string, payload: Omit<User, 'id'>) => {
   try {
     const response = await fetch(`${BASE_URL}/users/${id}`, {
       method: 'PUT',
@@ -42,7 +39,7 @@ export const updateUser = async (
     }
     const result = await response.json();
     return result;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     throw new Error(err);
   }

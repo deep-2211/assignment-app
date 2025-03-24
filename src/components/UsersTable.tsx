@@ -1,4 +1,10 @@
-import { Box, Button, Container, IconButton } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  IconButton,
+  TableSortLabel,
+} from '@mui/material';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import ViewWeekOutlinedIcon from '@mui/icons-material/ViewWeekOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -9,7 +15,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useAppContext from '../hooks/useAppContext';
 import { User } from '../types/User';
 import { useTranslation } from 'react-i18next';
@@ -28,6 +34,9 @@ export default function UsersTable({ users, onDeleteRow }: UsersTableProps) {
   const [searchText, setSearchText] = useState('');
   const [filteredUsers, setFilteredUsers] = useState<User[] | null>(users);
 
+  const [orderBy, setOrderBy] = useState<keyof User | ''>('');
+  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
+
   useEffect(() => {
     if (searchText) {
       const filteredUsers = users?.filter((user) =>
@@ -39,10 +48,31 @@ export default function UsersTable({ users, onDeleteRow }: UsersTableProps) {
     }
   }, [searchText, users]);
 
+  const handleSort = (property: keyof User) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  const filteredUsersData = useMemo(() => {
+    return users.filter((user) =>
+      user.fullName.toLowerCase().includes(searchText.toLowerCase()),
+    );
+  }, [searchText, users]);
+
+  const sortedData = useMemo(() => {
+    if (!orderBy) return filteredUsers;
+    return [...filteredUsersData].sort((a, b) => {
+      if (a[orderBy] < b[orderBy]) return order === 'asc' ? -1 : 1;
+      if (a[orderBy] > b[orderBy]) return order === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }, [filteredUsers, filteredUsersData, orderBy, order]);
+
   const handleDelete = (user: User) => {
-    if(onDeleteRow) {
+    if (onDeleteRow) {
       onDeleteRow(user.id);
-    } 
+    }
   };
 
   return (
@@ -86,17 +116,87 @@ export default function UsersTable({ users, onDeleteRow }: UsersTableProps) {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>{t('table_col__name')}</TableCell>
-              <TableCell>{t('table_col__dept')}</TableCell>
-              <TableCell>{t('table_col__empid')}</TableCell>
-              <TableCell>{t('table_col__mobile')}</TableCell>
-              <TableCell>{t('table_col__email')}</TableCell>
-              <TableCell></TableCell>
+              <TableCell>
+                <TableSortLabel
+                  active={orderBy === 'fullName'}
+                  direction={orderBy === 'fullName' ? order : 'asc'}
+                  onClick={() => handleSort('fullName')}
+                  hideSortIcon={false}
+                  sx={{
+                    '& .MuiTableSortLabel-icon': {
+                      opacity: (orderBy === 'fullName' ? 1 : 0.4),
+                    },
+                  }}
+                >
+                  {t('table_col__name')}
+                </TableSortLabel>
+              </TableCell>
+              <TableCell>
+                <TableSortLabel
+                  active={orderBy === 'department'}
+                  direction={orderBy === 'department' ? order : 'asc'}
+                  onClick={() => handleSort('department')}
+                  hideSortIcon={false}
+                  sx={{
+                    '& .MuiTableSortLabel-icon': {
+                      opacity: (orderBy === 'department' ? 1 : 0.4),
+                    },
+                  }}
+                >
+                  {t('table_col__dept')}
+                </TableSortLabel>
+              </TableCell>
+              <TableCell>
+                <TableSortLabel
+                  active={orderBy === 'id'}
+                  direction={orderBy === 'id' ? order : 'asc'}
+                  onClick={() => handleSort('id')}
+                  hideSortIcon={false}
+                  sx={{
+                    '& .MuiTableSortLabel-icon': {
+                      opacity: (orderBy === 'id' ? 1 : 0.4),
+                    },
+                  }}
+                >
+                  {t('table_col__empid')}
+                </TableSortLabel>
+              </TableCell>
+              <TableCell>
+                <TableSortLabel
+                  active={orderBy === 'mobileNo'}
+                  direction={orderBy === 'mobileNo' ? order : 'asc'}
+                  onClick={() => handleSort('mobileNo')}
+                  hideSortIcon={false}
+                  sx={{
+                    '& .MuiTableSortLabel-icon': {
+                      opacity: (orderBy === 'mobileNo' ? 1 : 0.4),
+                    },
+                  }}
+                >
+                  {t('table_col__mobile')}
+                </TableSortLabel>
+              </TableCell>
+              <TableCell>
+                <TableSortLabel
+                  active={orderBy === 'email'}
+                  direction={orderBy === 'email' ? order : 'asc'}
+                  onClick={() => handleSort('email')}
+                  hideSortIcon={false}
+                  sx={{
+                    '& .MuiTableSortLabel-icon': {
+                      opacity: (orderBy === 'email' ? 1 : 0.4),
+                    },
+                  }}
+                >
+                  {t('table_col__email')}
+                </TableSortLabel>
+              </TableCell>
+              <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredUsers?.length ? (
-              filteredUsers.map((user) => (
+            {sortedData?.length ? (
+              sortedData.map((user) => (
                 <TableRow
                   key={user.id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -116,7 +216,11 @@ export default function UsersTable({ users, onDeleteRow }: UsersTableProps) {
                     >
                       <ModeEditOutlinedIcon />
                     </IconButton>
-                    <IconButton aria-label="delete" color="inherit" onClick={() => handleDelete(user)}>
+                    <IconButton
+                      aria-label="delete"
+                      color="inherit"
+                      onClick={() => handleDelete(user)}
+                    >
                       <DeleteOutlinedIcon />
                     </IconButton>
                   </TableCell>

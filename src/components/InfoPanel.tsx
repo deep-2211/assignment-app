@@ -213,7 +213,11 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
               <IconButton
                 aria-label="close panel"
                 size="small"
-                onClick={() => selectUser(null)}
+                onClick={() => {
+                  selectUser(null);
+                  setIsEditInfo(false);
+                  setLoginInfoEdit(false);
+                }}
               >
                 <CloseIcon fontSize="inherit" />
               </IconButton>
@@ -231,10 +235,10 @@ export default function InfoPanel({ onSave }: InfoPanelProps) {
                   <IconButton
                     sx={{
                       color: (theme) => theme.palette.common.white,
-                      backgroundColor: (theme) => theme.appColors.blue.main,
+                      backgroundColor: (theme) => theme.appColors.teal,
                       '&:hover': {
                         backgroundColor: (theme) =>
-                          theme.appColors.teal,
+                          theme.appColors.blue.main,
                       },
                     }}
                     onClick={() => onSave(user)}

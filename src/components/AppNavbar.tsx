@@ -12,9 +12,17 @@ import LanguageSwitcher from './LanguageSwitcher';
 import ThemeSwitcher from './ThemeSwitcher';
 import SearchField from './Search';
 import { IconPosition } from '../types/Common';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate } from 'react-router';
 
 export default function AppNavBar() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate(0);
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -60,6 +68,9 @@ export default function AppNavBar() {
             <LanguageSwitcher />
             <IconButton size="large" edge="end" color="inherit">
               <SettingsIcon />
+            </IconButton>
+            <IconButton size="large" edge="end" color="inherit" onClick={handleLogout}>
+              <LogoutIcon />
             </IconButton>
           </Box>
         </Toolbar>

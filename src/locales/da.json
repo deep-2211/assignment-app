@@ -30,5 +30,6 @@
   "lbl_infopanel__user_info": "Brugerinformation",
   "lbl_infopanel__login_info": "Logininformation",
   "lbl_page__not_found": "Siden blev ikke fundet",
-  "input_placeholder__search": "Søg"
+  "input_placeholder__search": "Søg efter navn",
+  "no_data_found": "Ingen data fundet"
 }

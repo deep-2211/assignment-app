@@ -30,5 +30,6 @@
   "lbl_infopanel__user_info": "User Information",
   "lbl_infopanel__login_info": "Login Information",
   "lbl_page__not_found": "Page Not Found",
-  "input_placeholder__search": "Search"
+  "input_placeholder__search": "Search by name",
+  "no_data_found": "No data found"
 }

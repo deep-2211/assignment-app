@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 declare module '@mui/material/styles' {
-  interface Theme {
+  interface Palette {
     appColors: {
       blue: {
         light: string;
@@ -12,7 +12,7 @@ declare module '@mui/material/styles' {
       teal: string;
     };
   }
-  interface ThemeOptions {
+  interface PaletteOptions {
     appColors?: {
       blue?: {
         light?: string;

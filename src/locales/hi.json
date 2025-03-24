@@ -30,5 +30,6 @@
   "lbl_infopanel__user_info": "User जानकारी",
   "lbl_infopanel__login_info": "Login जानकारी",
   "lbl_page__not_found": "पृष्ठ नहीं मिला",
-  "input_placeholder__search": "खोज"
+  "input_placeholder__search": "नाम से खोजें",
+  "no_data_found": "कोई डेटा नहीं मिला"
 }

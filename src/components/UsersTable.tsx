@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Container,
-  IconButton,
-} from '@mui/material';
+import { Box, Button, Container, IconButton } from '@mui/material';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import ViewWeekOutlinedIcon from '@mui/icons-material/ViewWeekOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -15,7 +9,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import useFetch from '../hooks/useFetch';
+import { useEffect, useState } from 'react';
 import useAppContext from '../hooks/useAppContext';
 import { User } from '../types/User';
 import { useTranslation } from 'react-i18next';
@@ -23,31 +17,28 @@ import SearchField from './Search';
 import { IconPosition } from '../types/Common';
 import '../i18n';
 
-export default function UsersTable() {
+export interface UsersTableProps {
+  users: User[];
+}
+
+export default function UsersTable({ users }: UsersTableProps) {
   const { t } = useTranslation();
   const { selectUser } = useAppContext();
-  const { data, loading, error } = useFetch('users');
+  const [searchText, setSearchText] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState<User[] | null>(users);
 
-  if (loading) {
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          height: '90dvh',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
-  }
+  useEffect(() => {
+    if (searchText) {
+      const filteredUsers = users?.filter((user) =>
+        user.fullName.toLowerCase().includes(searchText.toLowerCase()),
+      );
+      setFilteredUsers(filteredUsers);
+    } else {
+      setFilteredUsers(users);
+    }
+  }, [searchText, users]);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  return data ? (
+  return (
     <Container>
       <Box
         sx={{
@@ -61,6 +52,7 @@ export default function UsersTable() {
           <SearchField
             placeholder={t('input_placeholder__search')}
             iconPosition={IconPosition.START}
+            onInputChange={(text) => setSearchText(text)}
           />
         </Box>
         <Box sx={{ display: 'flex', columnGap: 2, flex: 1 }}>
@@ -96,35 +88,55 @@ export default function UsersTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {(data as User[]).map((user) => (
+            {filteredUsers?.length ? (
+              filteredUsers.map((user) => (
+                <TableRow
+                  key={user.employeeId}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {user.fullName}
+                  </TableCell>
+                  <TableCell>{user.department}</TableCell>
+                  <TableCell>{user.employeeId}</TableCell>
+                  <TableCell>{user.mobileNo}</TableCell>
+                  <TableCell>{user.email}</TableCell>
+                  <TableCell align="right">
+                    <IconButton
+                      aria-label="edit"
+                      color="inherit"
+                      onClick={() => selectUser(user)}
+                    >
+                      <ModeEditOutlinedIcon />
+                    </IconButton>
+                    <IconButton aria-label="delete" disabled color="inherit">
+                      <DeleteOutlinedIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
               <TableRow
-                key={user.employeeId}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
-                  {user.fullName}
-                </TableCell>
-                <TableCell>{user.department}</TableCell>
-                <TableCell>{user.employeeId}</TableCell>
-                <TableCell>{user.mobileNo}</TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell align="right">
-                  <IconButton
-                    aria-label="edit"
-                    color="inherit"
-                    onClick={() => selectUser(user)}
+                <TableCell colSpan={6} sx={{ p: 0 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      minHeight: 200,
+                      textAlign: 'center',
+                    }}
                   >
-                    <ModeEditOutlinedIcon />
-                  </IconButton>
-                  <IconButton aria-label="delete" disabled color="inherit">
-                    <DeleteOutlinedIcon />
-                  </IconButton>
+                    <h2>{t('no_data_found')}</h2>
+                  </Box>
                 </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>
     </Container>
-  ) : null;
+  );
 }

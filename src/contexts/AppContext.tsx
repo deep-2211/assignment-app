@@ -18,12 +18,8 @@ const AppContextProvider = ({ children }: { children: React.ReactNode }) => {
     setSelectedUser(user);
   };
 
-  const state = {
-    selectedUser,
-  };
-
   return (
-    <AppContext.Provider value={{ ...state, selectUser }}>
+    <AppContext.Provider value={{ selectedUser, selectUser }}>
       {children}
     </AppContext.Provider>
   );

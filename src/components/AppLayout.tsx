@@ -17,8 +17,8 @@ export default function AppLayout() {
     setDrawerOpened(false);
   }, [location]);
 
-  function handleDrawerToggle(idx: number) {
-    setDrawerOpened(() => idx === 0);
+  function handleDrawerToggle() {
+    setDrawerOpened((d) => !d);
   }
 
   return (
@@ -41,7 +41,7 @@ export default function AppLayout() {
         >
           <IconToolbar
             drawer={drawerOpened}
-            onDrawerToggle={(arg) => handleDrawerToggle(arg)}
+            onDrawerToggle={() => handleDrawerToggle()}
           />
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1 }}>

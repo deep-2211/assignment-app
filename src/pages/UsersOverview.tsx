@@ -22,10 +22,10 @@ export default function UsersOverview() {
   if (error) {
     return <div>Error: {error}</div>;
   }
-  
+
   return (
     <div>
-      <UsersTable users={data ?? []}/>
+      <UsersTable users={data ?? []} />
     </div>
   );
 }

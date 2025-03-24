@@ -1,10 +1,12 @@
 import { alpha, InputBase, styled } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconPosition } from '../types/Common';
+import { debounce } from 'lodash';
 
 interface SearchProps {
   placeholder: string;
   iconPosition?: IconPosition;
+  onInputChange?: (value: string) => void;
 }
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -37,8 +39,19 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 export default function SearchField({
   placeholder,
+  onInputChange,
   iconPosition = IconPosition.END,
 }: SearchProps) {
+  const debouncedSearch = debounce((text: string) => {
+    if (onInputChange) {
+      onInputChange(text);
+    }
+  }, 500);
+
+  const doSearch = (searchText: string) => {
+    debouncedSearch(searchText);
+  };
+
   return (
     <Search>
       {iconPosition === IconPosition.START && (
@@ -49,6 +62,7 @@ export default function SearchField({
       <StyledInputBase
         placeholder={placeholder}
         inputProps={{ 'aria-label': placeholder }}
+        onChange={(e) => doSearch(e.target.value)}
       />
       {iconPosition === IconPosition.END && (
         <SearchIconWrapper>

@@ -45,7 +45,7 @@ describe('UsersTable', () => {
     render(
       <ThemeContextProvider>
         <AppContextProvider>
-          <UsersTable users={mockData}/>
+          <UsersTable users={mockData} />
         </AppContextProvider>
       </ThemeContextProvider>,
     );
@@ -64,7 +64,7 @@ describe('UsersTable', () => {
     render(
       <ThemeContextProvider>
         <AppContextProvider>
-        <UsersTable users={mockData}/>
+          <UsersTable users={mockData} />
         </AppContextProvider>
       </ThemeContextProvider>,
     );
@@ -78,12 +78,10 @@ describe('UsersTable', () => {
   });
 
   it('should trigger the "Create User" button click', () => {
-    
-
     render(
       <ThemeContextProvider>
         <AppContextProvider>
-          <UsersTable users={mockData}/>
+          <UsersTable users={mockData} />
         </AppContextProvider>
       </ThemeContextProvider>,
     );

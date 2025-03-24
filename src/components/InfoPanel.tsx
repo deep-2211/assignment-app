@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Box, Drawer, IconButton, Typography } from '@mui/material';
+import { alpha, Box, Drawer, IconButton, InputBase, styled, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -10,10 +10,16 @@ import TranslateOutlinedIcon from '@mui/icons-material/TranslateOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PasswordOutlinedIcon from '@mui/icons-material/PasswordOutlined';
 import useAppContext from '../hooks/useAppContext';
+import { useState } from 'react';
 
 const panelWidth = 440;
 
-const ListHeader = ({ text }: { text: string }) => {
+interface ListHeaderProps {
+  text: string;
+  onEdit: (e: boolean) => void;
+}
+
+const ListHeader = ({ text, onEdit }: ListHeaderProps) => {
   return (
     <Box
       sx={{
@@ -30,7 +36,7 @@ const ListHeader = ({ text }: { text: string }) => {
       <Typography variant="body1" fontWeight={500}>
         {text}
       </Typography>
-      <IconButton>
+      <IconButton onClick={() => onEdit(true)}>
         <ModeEditOutlinedIcon />
       </IconButton>
     </Box>
@@ -79,9 +85,23 @@ const ListItem = ({
   );
 };
 
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  width: '100%',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1.5),
+  },
+  border: `1px solid ${alpha(theme.palette.divider, 0.15)}`,
+  borderRadius: theme.shape.borderRadius * 2.5,
+}));
+
+
 export default function InfoPanel() {
   const { t } = useTranslation();
   const { selectedUser, selectUser } = useAppContext();
+  const [ isEditInfo, setIsEditInfo ] = useState(false);
+
   return (
     <Drawer
       sx={{
@@ -120,12 +140,24 @@ export default function InfoPanel() {
             </Box>
 
             <Box px={4} pb={4}>
-              <ListHeader text={t('lbl_infopanel__user_info')} />
-              <ListItem
+              <ListHeader text={t('lbl_infopanel__user_info')} onEdit={() => setIsEditInfo(fl => !fl)} />
+              {!isEditInfo ? (
+                <ListItem
                 label={t('table_col__name')}
                 value={selectedUser.fullName}
                 icon={<PersonOutlineOutlinedIcon />}
               />
+              ) :
+              (
+                <Box sx={{ display: 'flex', alignItems: 'center', columnGap: 1.5 }}>
+                  <PersonOutlineOutlinedIcon />
+                  <StyledInputBase
+                    placeholder={''}
+                    value={selectedUser.fullName}
+                    onChange={(e) => {}}
+                  />
+                </Box>
+              )}
               <ListItem
                 label={t('table_col__email')}
                 value={selectedUser.email}
@@ -156,7 +188,7 @@ export default function InfoPanel() {
                 value={selectedUser.language}
                 icon={<TranslateOutlinedIcon />}
               />
-              <ListHeader text={t('lbl_infopanel__login_info')} />
+              <ListHeader text={t('lbl_infopanel__login_info')} onEdit={() => {}}/>
               <ListItem
                 label={t('table_col__uname_pass')}
                 value={selectedUser.username}

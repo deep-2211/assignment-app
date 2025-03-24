@@ -69,7 +69,12 @@ export default function AppNavBar() {
             <IconButton size="large" edge="end" color="inherit">
               <SettingsIcon />
             </IconButton>
-            <IconButton size="large" edge="end" color="inherit" onClick={handleLogout}>
+            <IconButton
+              size="large"
+              edge="end"
+              color="inherit"
+              onClick={handleLogout}
+            >
               <LogoutIcon />
             </IconButton>
           </Box>

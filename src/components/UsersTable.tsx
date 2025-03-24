@@ -124,7 +124,7 @@ export default function UsersTable({ users, onDeleteRow }: UsersTableProps) {
                   hideSortIcon={false}
                   sx={{
                     '& .MuiTableSortLabel-icon': {
-                      opacity: (orderBy === 'fullName' ? 1 : 0.4),
+                      opacity: orderBy === 'fullName' ? 1 : 0.4,
                     },
                   }}
                 >
@@ -139,7 +139,7 @@ export default function UsersTable({ users, onDeleteRow }: UsersTableProps) {
                   hideSortIcon={false}
                   sx={{
                     '& .MuiTableSortLabel-icon': {
-                      opacity: (orderBy === 'department' ? 1 : 0.4),
+                      opacity: orderBy === 'department' ? 1 : 0.4,
                     },
                   }}
                 >
@@ -154,7 +154,7 @@ export default function UsersTable({ users, onDeleteRow }: UsersTableProps) {
                   hideSortIcon={false}
                   sx={{
                     '& .MuiTableSortLabel-icon': {
-                      opacity: (orderBy === 'id' ? 1 : 0.4),
+                      opacity: orderBy === 'id' ? 1 : 0.4,
                     },
                   }}
                 >
@@ -169,7 +169,7 @@ export default function UsersTable({ users, onDeleteRow }: UsersTableProps) {
                   hideSortIcon={false}
                   sx={{
                     '& .MuiTableSortLabel-icon': {
-                      opacity: (orderBy === 'mobileNo' ? 1 : 0.4),
+                      opacity: orderBy === 'mobileNo' ? 1 : 0.4,
                     },
                   }}
                 >
@@ -184,7 +184,7 @@ export default function UsersTable({ users, onDeleteRow }: UsersTableProps) {
                   hideSortIcon={false}
                   sx={{
                     '& .MuiTableSortLabel-icon': {
-                      opacity: (orderBy === 'email' ? 1 : 0.4),
+                      opacity: orderBy === 'email' ? 1 : 0.4,
                     },
                   }}
                 >
